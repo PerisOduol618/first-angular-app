@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-details',
   standalone: true,
   imports: [CommonModule],
-  template: `
+  template: 
+  `
     <p>
       details works!
     </p>
