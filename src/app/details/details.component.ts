@@ -9,14 +9,8 @@ import { HousingLocation } from '../housinglocation';
   imports: [CommonModule],
   template: `
   <article>
-    <!-- <img class="listing-photo" [src]="housingLocation?.photo"
-      alt="Exterior photo of {{housingLocation?.name}}"/> -->
-
-      <img
-        class="listing-photo"
-        [src]="housingLocation?.photo"
-        alt="Exterior photo of {{ housingLocation?.name }}"
-      />
+    <img class="listing-photo" [src]="housingLocation?.photo"
+      alt="Exterior photo of {{housingLocation?.name}}"/>
     <section class="listing-description">
       <h2 class="listing-heading">{{housingLocation?.name}}</h2>
       <p class="listing-location">{{housingLocation?.city}}, {{housingLocation?.state}}</p>
@@ -35,15 +29,14 @@ import { HousingLocation } from '../housinglocation';
 })
 
 export class DetailsComponent {
-  route: ActivatedRoute = inject(ActivatedRoute)
+
+  route: ActivatedRoute = inject(ActivatedRoute);
   housingService = inject(HousingService);
   housingLocation: HousingLocation | undefined;
 
-  housingLocationId = -1;
-  
-
   constructor() {
-    this.housingLocationId = Number(this.route.snapshot.params)
-    this.housingService.getHousingLocationById(this.housingLocationId)
+    const housingLocationId = Number(this.route.snapshot.params['id']);
+    this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
   }
+
 }
